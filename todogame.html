@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+       
+      #container {
+        display: grid;
+        grid-template-columns: 200px 150px 100px;
+        column-gap: 10px;
+        row-gap: 15px;
+        width: 50%;
+        margin-top: 2rem;
+      }
+      #m3 {
+        margin-bottom: 15px;
+        display: grid;
+        grid-template-columns: 200px 150px 100px;
+        column-gap: 10px;
+        text-align: center;
+      }
+      #m1 {
+        font-size: 15px;
+        text-align: center;
+        padding: 8px;
+      }
+      #c {
+        color: white;
+        background-color: darkgreen;
+        border-radius: 10px;
+        width: 100px;
+      }
+      .todocontainer {
+        padding: 2rem;
+        width: 40%;
+        text-align: center;
+       
+      }
+      body{
+        text-align: center;
+        background-color: rgb(129, 50, 158);
+        /* background-image:linear-gradient(to top right ,rgb(39, 154, 39),teal,rgb(189, 106, 106)); */
+      }
+      @media screen and (max-width:500px) {
+        h1{
+            margin: 1rem auto;
+            width: 420px;
+        }
+        .todocontainer{
+            width: 70%;
+            margin: 5rem 3rem 5rem 0rem;
+
+        }
+        .container{
+            width: 90%;
+            text-align: center;
+        }
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="todocontainer">
+      <h1>Todo App</h1>
+      <div id="m3">
+        <input id="m1" type="text" placeholder="Enter todo here" />
+        <input id="m2" type="date" />
+        <button id="c" onclick="fun1()">Add</button>
+    <div id="container"></div>
+</div>
+
+</div>
+
+    <script>
+      let arr = [
+        {
+          item: "ranjeet",
+          date: "20/05/2003",
+        },
+        {
+          item: "kaif",
+          date: "30/05/2003",
+        },
+      ];
+      fun2();
+      function fun1() {
+        let todovalue = document.getElementById("m1").value;
+        let tododate = document.getElementById("m2").value;
+        arr.push({ item: todovalue, date: tododate });
+        document.getElementById("m1").value = " ";
+        document.getElementById("m2").value = " ";
+        fun2();
+      }
+      function fun2() {
+        let res = document.getElementById("container");
+
+        let newhtml = "";
+
+        for (let i = 0; i < arr.length; i++) {
+          let item = arr[i].item;
+          let date = arr[i].date;
+          newhtml += `
+               <span  style="  font-size: 20px;
+           padding: 8px;">${item}</span>
+               <span  style="  font-size: 20px;
+           padding: 8px;">${date}</span>
+               <button onclick="arr.splice(${i}, 1);
+               fun2();" style="  font-size: 15px;padding: 8px;
+                color:white;background-color: red;  border-radius: 10px; ">Delete</button>
+               
+            `;
+        }
+        res.innerHTML = newhtml;
+      }
+    </script>
+  </body>
+</html>
